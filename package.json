@@ -1,0 +1,19 @@
+{
+  "name": "react-test",
+  "version": "1.0.0",
+  "description": "A small example of testing react",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test"
+  },
+  "author": "Besart Hoxhaj",
+  "license": "MIT",
+  "devDependencies": {
+    "jsdom": "^5.6.1",
+    "mocha": "^2.2.5",
+    "react": "^0.13.3",
+    "tape": "^4.0.1",
+    "babel": "^5.8.19",
+    "babel-loader": "^5.3.2"
+  }
+}
