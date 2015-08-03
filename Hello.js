@@ -9,4 +9,4 @@ export default React.createClass({
             <h1>Hello world!</h1>
        );
     }
-})
+});
