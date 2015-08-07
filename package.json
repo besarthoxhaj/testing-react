@@ -4,17 +4,28 @@
   "description": "A small example of testing react",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test"
+    "test": "karma start karma.config.js"
   },
-  "author": "Besart Hoxhaj",
+  "author": "Besart Hoxhaj, Daniel Whyte",
   "license": "MIT",
   "devDependencies": {
     "babel": "^5.8.19",
     "babel-loader": "^5.3.2",
     "cheerio": "^0.19.0",
+    "expect": "^1.8.0",
+    "history": "^1.1.0",
+    "jasmine-core": "^2.3.4",
     "jsdom": "^5.6.1",
+    "karma": "^0.13.8",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-jasmine": "^0.3.6",
+    "karma-sourcemap-loader": "^0.3.5",
+    "karma-webpack": "^1.7.0",
     "mocha": "^2.2.5",
     "react": "^0.13.3",
-    "tape": "^4.0.1"
+    "react-router": "1.0.0-beta3",
+    "tape": "^4.0.1",
+    "webpack": "^1.11.0"
   }
 }
