@@ -19,7 +19,7 @@ describe('Hello component', () => {
         );
 
         const output = renderer.getRenderOutput();
-        console.log('shallow', output);
+
         assert.equal(output.type, 'h1', 'right tag h1');
     });
 
@@ -31,7 +31,7 @@ describe('Hello component', () => {
 
         const ButtonNode = React.findDOMNode(ButtonComponent);
 
-        console.log('Button node: ', ButtonNode);
+        assert.equal(ButtonNode.textContent, 'Hello world!');
     });
 
     it('render component with #renderToString method', () => {
