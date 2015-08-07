@@ -1,28 +1,52 @@
 'use strict';
 
-
-import React from 'react';
-import jsdom from 'jsdom';
 import Hello from '../Hello.js';
+import React from 'react/addons';
+import RealReact from 'react';
+import assert from 'assert';
+import cheerio from 'cheerio';
 
-describe('jsdom with jquery', function () {
+const { TestUtils } = React.addons;
 
-    it('should work', function (done) {
+describe('Hello component', () => {
 
-        jsdom.env('', {
-                  virtualConsole: jsdom.createVirtualConsole().sendTo(console),
-                  scripts: ['http://code.jquery.com/jquery-2.1.1.js'],
-                  done: function (err, window) {
+    it('shallow render', () => {
 
-                      var $ = window.$;
+        const renderer = TestUtils.createRenderer();
 
-                      global.window = window;
-                      global.document = window.document;
+        renderer.render(
+            <Hello />
+        );
 
-                      React.render(<Hello />, global.document.body);
-                      console.log('Title: ', $('h1').text());
-                      done();
-                  }
-        });
+        const output = renderer.getRenderOutput();
+        console.log('shallow', output);
+        assert.equal(output.type, 'h1', 'right tag h1');
     });
+
+    it('#renders an h1', () => {
+
+        const RenderedComponent = TestUtils.renderIntoDocument(<Hello />);
+
+        const ButtonComponent = TestUtils.findRenderedDOMComponentWithTag(RenderedComponent, 'h1');
+
+        const ButtonNode = React.findDOMNode(ButtonComponent);
+
+        console.log('Button node: ', ButtonNode);
+    });
+
+    it('render component with #renderToString method', () => {
+
+         var stringDOM = RealReact.renderToString(<Hello/>);
+
+         var $ = cheerio.load(stringDOM);
+         assert.equal($('h1').text(), 'Hello world!');
+    });
+
+    it('render component directly on global.document', () => {
+
+         RealReact.render(<Hello/>, global.document.body);
+
+         var $ = cheerio.load(global.document.body.innerHTML);
+         assert.equal($('h1').text(), 'Hello world!');
+     });
 });

@@ -9,11 +9,12 @@
   "author": "Besart Hoxhaj",
   "license": "MIT",
   "devDependencies": {
+    "babel": "^5.8.19",
+    "babel-loader": "^5.3.2",
+    "cheerio": "^0.19.0",
     "jsdom": "^5.6.1",
     "mocha": "^2.2.5",
     "react": "^0.13.3",
-    "tape": "^4.0.1",
-    "babel": "^5.8.19",
-    "babel-loader": "^5.3.2"
+    "tape": "^4.0.1"
   }
 }
