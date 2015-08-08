@@ -7,21 +7,16 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var history = require('react-router/lib/HashHistory').history;
 
-var rawRoutes = (
-  <div>
-    <Route path='/' component={App} />
-    <Route path='login' component={Login} />
-  </div>
-);
+module.exports = function (historyArg, onUpdateFun) {
 
-var routes = (
-  <Router history={history}>
-    rawRoutes
-  </Router>
-);
+    var historyArg = historyArg || require('react-router/lib/HashHistory').history;
+    var onUpdateFun = onUpdateFun || function () {};
 
-module.exports = {
-    routes: routes,
-    rawRoutes: rawRoutes
+    return (
+        <Router history={historyArg} onUpdate={onUpdateFun}>
+            <Route path='/' component={App} />
+            <Route path='login' component={Login} />
+        </Router>
+    );
 };
 

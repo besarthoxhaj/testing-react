@@ -1,12 +1,11 @@
 import expect from 'expect';
 import React from 'react/addons';
-import { Router  } from 'react-router';
 import MemoryHistory from 'react-router/lib/MemoryHistory'
 var { click } = React.addons.TestUtils.Simulate;
 
 describe('The route component', function () {
 
-    var rawRoutes = require('../src/routes').rawRoutes;
+    var compileRoutes = require('../src/routes.js');
     var node;
 
     beforeEach(function () {
@@ -17,9 +16,7 @@ describe('The route component', function () {
     it('should render correctly on "/" path', function (done) {
 
         React.render((
-          <Router history={new MemoryHistory('/')}>
-            {rawRoutes}
-          </Router>
+            compileRoutes(new MemoryHistory('/'))
         ), node, function() {
 
             expect(node.innerHTML).toMatch(/Welcome to App/);
@@ -36,9 +33,7 @@ describe('The route component', function () {
         }
 
         React.render((
-          <Router history={new MemoryHistory('/')} onUpdate={exec}>
-            {rawRoutes}
-          </Router>
+            compileRoutes(new MemoryHistory('/'), exec)
         ), node, function () {
 
           click(node.querySelector('a'), { button: 0 });
