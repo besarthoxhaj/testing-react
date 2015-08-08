@@ -1,11 +1,7 @@
-import assert from 'assert';
 import expect from 'expect';
 import React from 'react/addons';
-var Router = require('react-router').Router;
-var Route = require('react-router').Route;
-var MemoryHistory = require('react-router/lib/MemoryHistory');
-var HashHistory = require('react-router/lib/HashHistory').history;
-
+import { Router  } from 'react-router';
+import MemoryHistory from 'react-router/lib/MemoryHistory'
 var { click } = React.addons.TestUtils.Simulate;
 
 describe('The route component', function () {
@@ -14,6 +10,7 @@ describe('The route component', function () {
     var node;
 
     beforeEach(function () {
+
       node = document.createElement('div');
     });
 
@@ -48,5 +45,4 @@ describe('The route component', function () {
         });
     });
 });
-
 
