@@ -1,4 +1,11 @@
-# Testing react
+# Testing react with karma
+
+Testing react with karma and webpack.
+
+## Contents:
+
+##### 1. [Mocha and jsdom](https://github.com/besarthoxhaj/testing-react/tree/mocha)
+##### 1. [Mocha and karma](https://github.com/besarthoxhaj/testing-react/tree/karma)
 
 A small example on testing react. The tools we are gonna use are:
 
