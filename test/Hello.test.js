@@ -10,9 +10,7 @@ var { click } = React.addons.TestUtils.Simulate;
 
 describe('The route component', function () {
 
-    var Login = require('../src/components/Login.js');
-    var App = require('../src/components/App.js');
-
+    var rawRoutes = require('../src/routes').rawRoutes;
     var node;
 
     beforeEach(function () {
@@ -23,8 +21,7 @@ describe('The route component', function () {
 
         React.render((
           <Router history={new MemoryHistory('/')}>
-            <Route path='/' component={App}/>
-            <Route path='/login' component={Login}/>
+            {rawRoutes}
           </Router>
         ), node, function() {
 
@@ -43,8 +40,7 @@ describe('The route component', function () {
 
         React.render((
           <Router history={new MemoryHistory('/')} onUpdate={exec}>
-            <Route path='/' component={App}/>
-            <Route path='/login' component={Login}/>
+            {rawRoutes}
           </Router>
         ), node, function () {
 
