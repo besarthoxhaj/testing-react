@@ -7,7 +7,7 @@ var Router = require('react-router').Router;
 var Route = require('react-router').Route;
 var history = require('react-router/lib/HashHistory').history;
 
-var componentRoutes = (
+var rawRoutes = (
   <div>
     <Route path='/' component={App} />
     <Route path='login' component={Login} />
@@ -16,8 +16,12 @@ var componentRoutes = (
 
 var routes = (
   <Router history={history}>
-    componentRoutes
+    rawRoutes
   </Router>
 );
 
-module.exports = routes;
+module.exports = {
+    routes: routes,
+    rawRoutes: rawRoutes
+};
+

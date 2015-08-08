@@ -1,11 +1,15 @@
 'use strict';
 
 import React from 'react';
+import { Link } from 'react-router';
 
 let App = React.createClass({
   render() {
     return (
-      <h1>Welcome to App</h1>
+        <div>
+          <h1>Welcome to App</h1>
+          <Link to='login'>Login</Link>
+        </div>
     );
   }
 });

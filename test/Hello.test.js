@@ -1,29 +1,56 @@
 import assert from 'assert';
-import React from 'react';
+import expect from 'expect';
+import React from 'react/addons';
 var Router = require('react-router').Router;
 var Route = require('react-router').Route;
-import createHistory from 'history/lib/createMemoryHistory';
+var MemoryHistory = require('react-router/lib/MemoryHistory');
+var HashHistory = require('react-router/lib/HashHistory').history;
 
-var Login = require('../src/components/Login.js');
-var App = require('../src/components/App.js');
+var { click } = React.addons.TestUtils.Simulate;
 
-var node = document.createElement('div');
+describe('The route component', function () {
 
-function exec () {
+    var Login = require('../src/components/Login.js');
+    var App = require('../src/components/App.js');
 
-  console.log('Update');
-}
+    var node;
 
-var h = createHistory('/');
+    beforeEach(function () {
+      node = document.createElement('div');
+    });
 
-console.log(h)
+    it('should render correctly on "/" path', function (done) {
 
-React.render((
-  <Router history={h} onUpdate={exec}>
-    <Route path='/' component={App}/>
-    <Route path='/hello' component={Login}/>
-  </Router>
-), node, function() {
+        React.render((
+          <Router history={new MemoryHistory('/')}>
+            <Route path='/' component={App}/>
+            <Route path='/login' component={Login}/>
+          </Router>
+        ), node, function() {
 
-  console.log(node.innerHTML);
+            expect(node.innerHTML).toMatch(/Welcome to App/);
+            done();
+        });
+    });
+
+    it('should redirect to "/login" on link click', function (done) {
+
+        function exec () {
+
+          expect(node.innerHTML).toMatch(/Welcome to Login/);
+          done();
+        }
+
+        React.render((
+          <Router history={new MemoryHistory('/')} onUpdate={exec}>
+            <Route path='/' component={App}/>
+            <Route path='/login' component={Login}/>
+          </Router>
+        ), node, function () {
+
+          click(node.querySelector('a'), { button: 0 });
+        });
+    });
 });
+
+
